@@ -4,18 +4,16 @@ require("dotenv").config();
 const express = require('express'); 
 const jwt = require('jsonwebtoken');
 const app = express();
+require('dotenv').config();
 
+
+
+const userRoutes = require('./routes/userRoute')
 app.use(express.json());
-
+app.use('/api/users', userRoutes)
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-    res.send("Hello World!")
-})
 
-app.get("/task", authenticateToken, (req, res) => {
-    res.json(tasks.filter(task => task.userId === req.user.id))
-})
 
 
 
@@ -23,13 +21,7 @@ app.get("/task", authenticateToken, (req, res) => {
 
 
 // authentication routes
-app.post("/api/register", (req, res) => {
-    try{
-        const {username, password} = req.body;;
 
-        const user = await 
-    }
-})
 
 
 app.listen(PORT, ()=> {
@@ -54,5 +46,5 @@ function authenticateToken(req, res, next){
         
     })
 
-    Bearer TOKEN
+ 
 }
